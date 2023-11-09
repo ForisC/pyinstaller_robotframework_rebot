@@ -8,7 +8,6 @@ def get_datas():
     from pathlib import Path
     result = []
 
-    folder = Path(rebot.__file__).parent
     folders = [
         Path(rebot.__file__).parent,
         Path(common.__file__).parent,
@@ -21,7 +20,12 @@ def get_datas():
     files = [x for x in files if x.is_file() and x.suffix != ".py"]
     site_package_path = Path(robot.__file__).parent.parent
     for file in files:
-        result.append((str(file), str(file.relative_to(site_package_path).parent)))
+        result.append(
+            (
+                str(file), 
+                str(file.relative_to(site_package_path).parent)
+            )
+        )
     return result
 
 a = Analysis(
